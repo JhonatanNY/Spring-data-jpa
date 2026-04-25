@@ -1,5 +1,7 @@
 package com.example.springboot.jpa.springboot_jpa;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -27,7 +29,15 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		subQueries();
+		delete();
+	}
+
+	@Transactional
+	public void whereIn() {
+		System.out.println("============== consulta where in ==============");
+		List<Person> persons = repository.getPersonsByIds(Arrays.asList(1L, 2L, 5L));
+		persons.forEach(p -> System.out.println(p));
+
 	}
 
 	@Transactional
